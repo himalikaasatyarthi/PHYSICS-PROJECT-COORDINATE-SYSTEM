@@ -1,6 +1,7 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +24,7 @@
 
     <!-- NAVIGATION BAR -->
     <header class="navbar">
+
         <div class="logo">
             <span class="logo-icon">∞</span>
             <span>Multiverse <span class="logo-highlight">of Coordinates</span></span>
@@ -37,12 +39,14 @@
         </nav>
 
         <a href="#converter" class="nav-button">Explore Now ↗</a>
+
     </header>
 
 
-    <!-- HERO SECTION -->
+    <!-- MAIN CONTENT -->
     <main>
 
+        <!-- HERO SECTION -->
         <section class="hero" id="home">
 
             <div class="hero-content">
@@ -69,6 +73,7 @@
                 </p>
 
                 <div class="hero-buttons">
+
                     <a href="#converter" class="primary-button">
                         Start Converting →
                     </a>
@@ -76,9 +81,11 @@
                     <a href="#systems" class="secondary-button">
                         Explore Systems
                     </a>
+
                 </div>
 
                 <div class="hero-stats">
+
                     <div>
                         <strong>04</strong>
                         <span>Coordinate Systems</span>
@@ -93,6 +100,7 @@
                         <strong>3D</strong>
                         <span>Interactive Experience</span>
                     </div>
+
                 </div>
 
             </div>
@@ -107,10 +115,11 @@
         </section>
 
 
-        <!-- COORDINATE SYSTEMS -->
+        <!-- COORDINATE SYSTEMS SECTION -->
         <section class="systems-section" id="systems">
 
             <div class="section-heading">
+
                 <span class="section-label">THE FOUR DIMENSIONS</span>
 
                 <h2>Explore Coordinate Systems</h2>
@@ -119,11 +128,14 @@
                     Four different mathematical languages.
                     One way to describe a point in space.
                 </p>
+
             </div>
 
             <div class="systems-grid">
 
+                <!-- CARTESIAN -->
                 <article class="system-card cartesian-card">
+
                     <span class="system-number">01</span>
                     <div class="system-symbol">X Y Z</div>
 
@@ -139,10 +151,13 @@
                     </div>
 
                     <a href="#converter">Explore System →</a>
+
                 </article>
 
 
+                <!-- POLAR -->
                 <article class="system-card polar-card">
+
                     <span class="system-number">02</span>
                     <div class="system-symbol">r θ</div>
 
@@ -158,10 +173,13 @@
                     </div>
 
                     <a href="#converter">Explore System →</a>
+
                 </article>
 
 
+                <!-- CYLINDRICAL -->
                 <article class="system-card cylindrical-card">
+
                     <span class="system-number">03</span>
                     <div class="system-symbol">r θ z</div>
 
@@ -177,10 +195,13 @@
                     </div>
 
                     <a href="#converter">Explore System →</a>
+
                 </article>
 
 
+                <!-- SPHERICAL -->
                 <article class="system-card spherical-card">
+
                     <span class="system-number">04</span>
                     <div class="system-symbol">r θ φ</div>
 
@@ -196,6 +217,7 @@
                     </div>
 
                     <a href="#converter">Explore System →</a>
+
                 </article>
 
             </div>
@@ -207,6 +229,7 @@
         <section class="converter-section" id="converter">
 
             <div class="section-heading">
+
                 <span class="section-label">MATHEMATICAL ENGINE</span>
 
                 <h2>Coordinate Converter</h2>
@@ -215,113 +238,13 @@
                     Transform coordinates between any of the
                     four coordinate systems.
                 </p>
+
             </div>
 
-           
-    
-            <div class="converter-panel">
-            
-                <div class="converter-top">
-                    <span class="section-label">COORDINATE TRANSFORMATION</span>
-                    <h3>Convert Your Coordinates</h3>
-                    <p>Choose your coordinate systems and enter your points.</p>
-                </div>
-            
-                <div class="converter-selectors">
-            
-                    <div class="form-group">
-                        <label for="source-system">From System</label>
-                        <select id="source-system">
-                            <option value="0">Cartesian (x, y, z)</option>
-                            <option value="1">Polar (r, θ)</option>
-                            <option value="2">Cylindrical (r, θ, z)</option>
-                            <option value="3">Spherical (ρ, θ, φ)</option>
-                        </select>
-                    </div>
-            
-                    <div class="conversion-arrow">→</div>
-            
-                    <div class="form-group">
-                        <label for="destination-system">To System</label>
-                        <select id="destination-system">
-                            <option value="1">Polar (r, θ)</option>
-                            <option value="0">Cartesian (x, y, z)</option>
-                            <option value="2">Cylindrical (r, θ, z)</option>
-                            <option value="3">Spherical (ρ, θ, φ)</option>
-                        </select>
-                    </div>
-            
-                </div>
-            
-                <div class="points-heading">
-                    <h3>Input Coordinates</h3>
-                    <button type="button" id="add-point-btn">
-                        + Add Point
-                    </button>
-                </div>
-            
-                <div id="coordinate-inputs">
-            
-                    <div class="coordinate-row" data-point="1">
-            
-                        <span class="point-number">P1</span>
-            
-                        <input type="number" step="any"
-                            class="coordinate-input coord-x"
-                            placeholder="X / r / ρ"
-                            value="3">
-            
-                        <input type="number" step="any"
-                            class="coordinate-input coord-y"
-                            placeholder="Y / θ"
-                            value="4">
-            
-                        <input type="number" step="any"
-                            class="coordinate-input coord-z"
-                            placeholder="Z / φ"
-                            value="5">
-            
-                        <button type="button" class="remove-point-btn"
-                            disabled>×</button>
-            
-                    </div>
-            
-                </div>
-            
-                <div class="angle-note">
-                    Angles are entered in degrees.
-                    Polar coordinates use two components; the third is ignored.
-                </div>
-            
-                <button type="button" id="convert-btn" class="primary-button">
-                    Convert Coordinates →
-                </button>
-            
-                <div id="conversion-results" class="results-panel">
-            
-                    <h3>Conversion Results</h3>
-            
-                    <p id="result-placeholder">
-                        Your converted coordinates will appear here.
-                    </p>
-            
-                    <div id="result-list"></div>
-            
-                </div>
-            
-                <div id="calculation-section" class="calculation-panel">
-            
-                    <h3>Step-by-Step Calculations</h3>
-            
-                    <div id="calculation-content">
-                        Formulas and calculation steps will appear here.
-                    </div>
-            
-                </div>
-            
-            </div>
 
-                          
+            <!-- CONVERTER INTRODUCTION -->
+            <div class="converter-intro">
+
                 <h3>Your Mathematical Journey Starts Here</h3>
 
                 <p>
@@ -336,6 +259,132 @@
 
             </div>
 
+
+            <!-- SYSTEM SELECTORS -->
+            <div class="converter-selectors">
+
+                <div class="form-group">
+
+                    <label for="source-system">From System</label>
+
+                    <select id="source-system">
+
+                        <option value="0">Cartesian (x, y, z)</option>
+                        <option value="1">Polar (r, θ)</option>
+                        <option value="2">Cylindrical (r, θ, z)</option>
+                        <option value="3">Spherical (ρ, θ, φ)</option>
+
+                    </select>
+
+                </div>
+
+                <div class="conversion-arrow">→</div>
+
+                <div class="form-group">
+
+                    <label for="destination-system">To System</label>
+
+                    <select id="destination-system">
+
+                        <option value="1">Polar (r, θ)</option>
+                        <option value="0">Cartesian (x, y, z)</option>
+                        <option value="2">Cylindrical (r, θ, z)</option>
+                        <option value="3">Spherical (ρ, θ, φ)</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- INPUT COORDINATES -->
+            <div class="points-heading">
+
+                <h3>Input Coordinates</h3>
+
+                <button type="button" id="add-point-btn">
+                    + Add Point
+                </button>
+
+            </div>
+
+
+            <div id="coordinate-inputs">
+
+                <div class="coordinate-row" data-point="1">
+
+                    <span class="point-number">P1</span>
+
+                    <input type="number"
+                        step="any"
+                        class="coordinate-input coord-x"
+                        placeholder="X / r / ρ"
+                        value="3">
+
+                    <input type="number"
+                        step="any"
+                        class="coordinate-input coord-y"
+                        placeholder="Y / θ"
+                        value="4">
+
+                    <input type="number"
+                        step="any"
+                        class="coordinate-input coord-z"
+                        placeholder="Z / φ"
+                        value="5">
+
+                    <button type="button"
+                        class="remove-point-btn"
+                        disabled>
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANGLE INFORMATION -->
+            <div class="angle-note">
+
+                Angles are entered in degrees.
+                Polar coordinates use two components; the third is ignored.
+
+            </div>
+
+
+            <!-- CONVERT BUTTON -->
+            <button type="button" id="convert-btn" class="primary-button">
+                Convert Coordinates →
+            </button>
+
+
+            <!-- CONVERSION RESULTS -->
+            <div id="conversion-results" class="results-panel">
+
+                <h3>Conversion Results</h3>
+
+                <p id="result-placeholder">
+                    Your converted coordinates will appear here.
+                </p>
+
+                <div id="result-list"></div>
+
+            </div>
+
+
+            <!-- CALCULATION STEPS -->
+            <div id="calculation-section" class="calculation-panel">
+
+                <h3>Step-by-Step Calculations</h3>
+
+                <div id="calculation-content">
+                    Formulas and calculation steps will appear here.
+                </div>
+
+            </div>
+
         </section>
 
 
@@ -343,6 +392,7 @@
         <section class="visualizer-section" id="visualizer">
 
             <div class="section-heading">
+
                 <span class="section-label">BEYOND THE EQUATIONS</span>
 
                 <h2>Visualize in Three Dimensions</h2>
@@ -351,11 +401,13 @@
                     See mathematics come alive through interactive
                     3D coordinate models.
                 </p>
+
             </div>
 
             <div class="visualizer-grid">
 
                 <div class="visualizer-card">
+
                     <div class="visualizer-preview">
                         <span>01</span>
                         <div class="preview-symbol">XYZ</div>
@@ -367,9 +419,12 @@
                         Explore the original point and its
                         coordinate representation.
                     </p>
+
                 </div>
 
+
                 <div class="visualizer-card">
+
                     <div class="visualizer-preview">
                         <span>02</span>
                         <div class="preview-symbol">3D</div>
@@ -381,6 +436,7 @@
                         Observe the same point in its converted
                         coordinate representation.
                     </p>
+
                 </div>
 
             </div>
@@ -410,11 +466,13 @@
             </p>
 
             <div class="technology-tags">
+
                 <span>C Programming</span>
                 <span>HTML & CSS</span>
                 <span>JavaScript</span>
                 <span>Three.js</span>
                 <span>WebAssembly</span>
+
             </div>
 
         </section>
@@ -438,12 +496,14 @@
         </p>
 
     </footer>
-    <!-- WebAssembly C Engine -->
+
+
+    <!-- WEBASSEMBLY C ENGINE -->
     <script src="wasm/coordinates.js"></script>
 
-    <!-- Main JavaScript Application -->
+    <!-- MAIN JAVASCRIPT APPLICATION -->
     <script type="module" src="js/main.js"></script>
-    
+
 </body>
 </html>
-
+```
