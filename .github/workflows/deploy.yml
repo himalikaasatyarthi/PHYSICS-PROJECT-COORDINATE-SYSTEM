@@ -45,7 +45,7 @@ jobs:
             -s MODULARIZE=1 \
             -s EXPORT_NAME=createCoordinateModule \
             -s EXPORTED_FUNCTIONS='["_convertCoordinates","_malloc","_free"]' \
-            -s EXPORTED_RUNTIME_METHODS='["ccall","cwrap"]' \
+            -s EXPORTED_RUNTIME_METHODS='["ccall","cwrap","HEAPF64"]' \
             -s ALLOW_MEMORY_GROWTH=1 \
             -o public/wasm/coordinates.js
 
