@@ -1,1 +1,343 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Multiverse of Coordinates | Physics Project</title>
+
+    <meta name="description"
+        content="Explore Cartesian, Polar, Cylindrical and Spherical coordinate systems through interactive conversion and 3D visualization.">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon">∞</span>
+            <span>Multiverse <span class="logo-highlight">of Coordinates</span></span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#systems">Coordinate Systems</a>
+            <a href="#converter">Converter</a>
+            <a href="#visualizer">3D Visualizer</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <a href="#converter" class="nav-button">Explore Now ↗</a>
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <span class="hero-label">
+                    ✦ AN INTERACTIVE PHYSICS EXPERIENCE
+                </span>
+
+                <h1>
+                    Multiverse of
+                    <span>Coordinates</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    One Point. Four Coordinate Systems.
+                    Infinite Possibilities.
+                </p>
+
+                <p class="hero-description">
+                    Discover the mathematical universe of coordinate
+                    systems. Convert points, understand equations,
+                    and explore dimensions through interactive 3D
+                    visualizations.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#converter" class="primary-button">
+                        Start Converting →
+                    </a>
+
+                    <a href="#systems" class="secondary-button">
+                        Explore Systems
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div>
+                        <strong>04</strong>
+                        <span>Coordinate Systems</span>
+                    </div>
+
+                    <div>
+                        <strong>12</strong>
+                        <span>Conversion Directions</span>
+                    </div>
+
+                    <div>
+                        <strong>3D</strong>
+                        <span>Interactive Experience</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="hero-decoration">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="orbit orbit-three"></div>
+                <div class="center-point">P</div>
+            </div>
+
+        </section>
+
+
+        <!-- COORDINATE SYSTEMS -->
+        <section class="systems-section" id="systems">
+
+            <div class="section-heading">
+                <span class="section-label">THE FOUR DIMENSIONS</span>
+
+                <h2>Explore Coordinate Systems</h2>
+
+                <p>
+                    Four different mathematical languages.
+                    One way to describe a point in space.
+                </p>
+            </div>
+
+            <div class="systems-grid">
+
+                <article class="system-card cartesian-card">
+                    <span class="system-number">01</span>
+                    <div class="system-symbol">X Y Z</div>
+
+                    <h3>Cartesian</h3>
+
+                    <p>
+                        Locate points using perpendicular
+                        X, Y and Z axes.
+                    </p>
+
+                    <div class="formula">
+                        P = (x, y, z)
+                    </div>
+
+                    <a href="#converter">Explore System →</a>
+                </article>
+
+
+                <article class="system-card polar-card">
+                    <span class="system-number">02</span>
+                    <div class="system-symbol">r θ</div>
+
+                    <h3>Polar</h3>
+
+                    <p>
+                        Describe a point in a plane using
+                        radius and angle.
+                    </p>
+
+                    <div class="formula">
+                        P = (r, θ)
+                    </div>
+
+                    <a href="#converter">Explore System →</a>
+                </article>
+
+
+                <article class="system-card cylindrical-card">
+                    <span class="system-number">03</span>
+                    <div class="system-symbol">r θ z</div>
+
+                    <h3>Cylindrical</h3>
+
+                    <p>
+                        Combine polar coordinates with
+                        vertical height.
+                    </p>
+
+                    <div class="formula">
+                        P = (r, θ, z)
+                    </div>
+
+                    <a href="#converter">Explore System →</a>
+                </article>
+
+
+                <article class="system-card spherical-card">
+                    <span class="system-number">04</span>
+                    <div class="system-symbol">r θ φ</div>
+
+                    <h3>Spherical</h3>
+
+                    <p>
+                        Describe points in three dimensions
+                        using radius and two angles.
+                    </p>
+
+                    <div class="formula">
+                        P = (r, θ, φ)
+                    </div>
+
+                    <a href="#converter">Explore System →</a>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONVERTER SECTION -->
+        <section class="converter-section" id="converter">
+
+            <div class="section-heading">
+                <span class="section-label">MATHEMATICAL ENGINE</span>
+
+                <h2>Coordinate Converter</h2>
+
+                <p>
+                    Transform coordinates between any of the
+                    four coordinate systems.
+                </p>
+            </div>
+
+            <div class="feature-panel">
+
+                <div class="feature-icon">⌘</div>
+
+                <h3>Your Mathematical Journey Starts Here</h3>
+
+                <p>
+                    Select a source coordinate system, choose your
+                    destination, enter your point and discover
+                    the converted result with complete calculations.
+                </p>
+
+                <span class="coming-label">
+                    CONVERTER MODULE
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- 3D VISUALIZER SECTION -->
+        <section class="visualizer-section" id="visualizer">
+
+            <div class="section-heading">
+                <span class="section-label">BEYOND THE EQUATIONS</span>
+
+                <h2>Visualize in Three Dimensions</h2>
+
+                <p>
+                    See mathematics come alive through interactive
+                    3D coordinate models.
+                </p>
+            </div>
+
+            <div class="visualizer-grid">
+
+                <div class="visualizer-card">
+                    <div class="visualizer-preview">
+                        <span>01</span>
+                        <div class="preview-symbol">XYZ</div>
+                    </div>
+
+                    <h3>Source Coordinate Space</h3>
+
+                    <p>
+                        Explore the original point and its
+                        coordinate representation.
+                    </p>
+                </div>
+
+                <div class="visualizer-card">
+                    <div class="visualizer-preview">
+                        <span>02</span>
+                        <div class="preview-symbol">3D</div>
+                    </div>
+
+                    <h3>Destination Coordinate Space</h3>
+
+                    <p>
+                        Observe the same point in its converted
+                        coordinate representation.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT SECTION -->
+        <section class="about-section" id="about">
+
+            <span class="section-label">ABOUT THE PROJECT</span>
+
+            <h2>Understanding Space Through Mathematics</h2>
+
+            <p>
+                Multiverse of Coordinates is an educational
+                physics project designed to demonstrate how
+                different coordinate systems represent the
+                same point in space.
+            </p>
+
+            <p>
+                The project combines C programming, mathematical
+                transformations, web technologies and interactive
+                three-dimensional visualization to make abstract
+                concepts easier to understand.
+            </p>
+
+            <div class="technology-tags">
+                <span>C Programming</span>
+                <span>HTML & CSS</span>
+                <span>JavaScript</span>
+                <span>Three.js</span>
+                <span>WebAssembly</span>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+
+        <div class="footer-logo">
+            ∞ Multiverse of Coordinates
+        </div>
+
+        <p>
+            Exploring the geometry of space, one point at a time.
+        </p>
+
+        <p class="copyright">
+            © 2026 Multiverse of Coordinates | Physics Project
+        </p>
+
+    </footer>
+
+</body>
+</html>
+
