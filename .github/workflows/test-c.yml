@@ -1,0 +1,37 @@
+
+name: C Coordinate Engine Tests
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-c-engine:
+    name: Compile and Test C Engine
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install GCC
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc
+
+      - name: Compile C Program
+        run: |
+          gcc -Wall -Wextra -std=c11 \
+          c-engine/coordinates.c \
+          c-engine/test.c \
+          -lm \
+          -o coordinate_test
+
+      - name: Run Coordinate Tests
+        run: ./coordinate_test
