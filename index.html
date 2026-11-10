@@ -217,10 +217,111 @@
                 </p>
             </div>
 
-            <div class="feature-panel">
+           
+    
+            <div class="converter-panel">
+            
+                <div class="converter-top">
+                    <span class="section-label">COORDINATE TRANSFORMATION</span>
+                    <h3>Convert Your Coordinates</h3>
+                    <p>Choose your coordinate systems and enter your points.</p>
+                </div>
+            
+                <div class="converter-selectors">
+            
+                    <div class="form-group">
+                        <label for="source-system">From System</label>
+                        <select id="source-system">
+                            <option value="0">Cartesian (x, y, z)</option>
+                            <option value="1">Polar (r, θ)</option>
+                            <option value="2">Cylindrical (r, θ, z)</option>
+                            <option value="3">Spherical (ρ, θ, φ)</option>
+                        </select>
+                    </div>
+            
+                    <div class="conversion-arrow">→</div>
+            
+                    <div class="form-group">
+                        <label for="destination-system">To System</label>
+                        <select id="destination-system">
+                            <option value="1">Polar (r, θ)</option>
+                            <option value="0">Cartesian (x, y, z)</option>
+                            <option value="2">Cylindrical (r, θ, z)</option>
+                            <option value="3">Spherical (ρ, θ, φ)</option>
+                        </select>
+                    </div>
+            
+                </div>
+            
+                <div class="points-heading">
+                    <h3>Input Coordinates</h3>
+                    <button type="button" id="add-point-btn">
+                        + Add Point
+                    </button>
+                </div>
+            
+                <div id="coordinate-inputs">
+            
+                    <div class="coordinate-row" data-point="1">
+            
+                        <span class="point-number">P1</span>
+            
+                        <input type="number" step="any"
+                            class="coordinate-input coord-x"
+                            placeholder="X / r / ρ"
+                            value="3">
+            
+                        <input type="number" step="any"
+                            class="coordinate-input coord-y"
+                            placeholder="Y / θ"
+                            value="4">
+            
+                        <input type="number" step="any"
+                            class="coordinate-input coord-z"
+                            placeholder="Z / φ"
+                            value="5">
+            
+                        <button type="button" class="remove-point-btn"
+                            disabled>×</button>
+            
+                    </div>
+            
+                </div>
+            
+                <div class="angle-note">
+                    Angles are entered in degrees.
+                    Polar coordinates use two components; the third is ignored.
+                </div>
+            
+                <button type="button" id="convert-btn" class="primary-button">
+                    Convert Coordinates →
+                </button>
+            
+                <div id="conversion-results" class="results-panel">
+            
+                    <h3>Conversion Results</h3>
+            
+                    <p id="result-placeholder">
+                        Your converted coordinates will appear here.
+                    </p>
+            
+                    <div id="result-list"></div>
+            
+                </div>
+            
+                <div id="calculation-section" class="calculation-panel">
+            
+                    <h3>Step-by-Step Calculations</h3>
+            
+                    <div id="calculation-content">
+                        Formulas and calculation steps will appear here.
+                    </div>
+            
+                </div>
+            
+            </div>
 
-                <div class="feature-icon">⌘</div>
-
+                          
                 <h3>Your Mathematical Journey Starts Here</h3>
 
                 <p>
