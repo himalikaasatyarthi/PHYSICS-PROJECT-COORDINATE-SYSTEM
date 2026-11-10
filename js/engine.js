@@ -1,10 +1,9 @@
 
 /*
   MULTIVERSE OF COORDINATES
-  C / WebAssembly Integration Engine
+  WebAssembly Integration Engine
 */
 
-// Coordinate system identifiers
 export const SYSTEMS = {
     CARTESIAN: 0,
     POLAR: 1,
@@ -16,17 +15,13 @@ let wasmModule = null;
 let conversionFunction = null;
 
 
-// Initialize WebAssembly
+// Initialize the C engine
 export async function initializeEngine() {
 
-    if (wasmModule) {
-        return true;
-    }
+    if (wasmModule) return true;
 
     if (typeof window.createCoordinateModule !== "function") {
-        throw new Error(
-            "WebAssembly module not found. Check coordinates.js."
-        );
+        throw new Error("WebAssembly module not loaded.");
     }
 
     wasmModule = await window.createCoordinateModule();
@@ -34,56 +29,55 @@ export async function initializeEngine() {
     conversionFunction = wasmModule.cwrap(
         "convertCoordinates",
         "number",
-        [
-            "number",
-            "number",
-            "number",
-            "number",
-            "number",
-            "number"
-        ]
+        ["number", "number", "number",
+         "number", "number", "number"]
     );
 
-    console.log(
-        "Multiverse C Engine initialized successfully!"
-    );
+    if (!wasmModule.getValue || !wasmModule.setValue) {
+        throw new Error(
+            "WebAssembly memory helper functions are unavailable."
+        );
+    }
+
+    console.log("Multiverse C Engine initialized successfully!");
 
     return true;
 }
 
 
-// Convert coordinates using the C engine
+// Convert coordinates through C
 export function convert(from, to, coordinates) {
 
     if (!wasmModule || !conversionFunction) {
-        throw new Error(
-            "Coordinate engine has not been initialized."
-        );
+        throw new Error("C engine is not initialized.");
     }
 
-    if (!Array.isArray(coordinates) ||
+    if (
+        !Array.isArray(coordinates) ||
         coordinates.length !== 3 ||
-        !coordinates.every(Number.isFinite)) {
+        !coordinates.every(Number.isFinite)
+    ) {
         throw new Error("Invalid coordinate input.");
     }
 
     const outputPointer = wasmModule._malloc(24);
 
     if (!outputPointer) {
-        throw new Error("Unable to allocate WebAssembly memory.");
+        throw new Error("WebAssembly memory allocation failed.");
     }
 
     try {
 
-        // Initialize three output values
-        const index = outputPointer / Float64Array.BYTES_PER_ELEMENT;
+        // Initialize output memory
+        for (let i = 0; i < 3; i++) {
+            wasmModule.setValue(
+                outputPointer + i * 8,
+                0,
+                "double"
+            );
+        }
 
-        wasmModule.HEAPF64.set(
-            [0, 0, 0],
-            index
-        );
-
-        // Call the actual C conversion function
+        // Call C conversion function
         const status = conversionFunction(
             from,
             to,
@@ -93,10 +87,17 @@ export function convert(from, to, coordinates) {
             outputPointer
         );
 
-        // Read converted values from WebAssembly memory
-        const values = Array.from(
-            wasmModule.HEAPF64.slice(index, index + 3)
-        );
+        // Read converted coordinates
+        const values = [];
+
+        for (let i = 0; i < 3; i++) {
+            values.push(
+                wasmModule.getValue(
+                    outputPointer + i * 8,
+                    "double"
+                )
+            );
+        }
 
         if (status === -1) {
             throw new Error(
@@ -106,24 +107,22 @@ export function convert(from, to, coordinates) {
 
         return {
             success: true,
-            status,
-            values,
+            status: status,
+            values: values,
             warning: status === 1
-                ? "Polar coordinates represent only the XY projection. Height information is omitted."
+                ? "Polar coordinates show only the XY projection. Height information is omitted."
                 : null
         };
 
     } finally {
 
-        // Release allocated memory
         wasmModule._free(outputPointer);
 
     }
 }
 
 
-// Check engine status
+// Engine status
 export function isEngineReady() {
     return wasmModule !== null;
 }
-
