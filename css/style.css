@@ -1029,3 +1029,195 @@ section {
     }
 }
 
+
+/* =========================================
+   MULTIVERSE - UPDATED INTERACTIVE DESIGN
+========================================= */
+
+/* 1. 3D VISUALIZER */
+
+.scene-container {
+    width: 100%;
+    height: 400px;
+    min-height: 320px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    background: radial-gradient(
+        circle at center,
+        #ffffff,
+        #f2eaf7,
+        #e9e0f0
+    );
+}
+
+.scene-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+.visualizer-card {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.visualizer-card h3 {
+    color: var(--dark);
+}
+
+.visualizer-error {
+    padding: 25px;
+    color: #b65d7c;
+    text-align: center;
+}
+
+/* 2. COORDINATE INPUT ROWS */
+
+.coordinate-row {
+    display: block;
+    padding: 18px;
+    margin-bottom: 15px;
+    background: #fcf8fc;
+    border: 1px solid #eee1ed;
+    border-radius: 13px;
+}
+
+.coordinate-row-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    color: #9364a8;
+}
+
+.coordinate-fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.coordinate-fields label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+    color: #55445f;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.coordinate-fields input {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #e5d5e6;
+    border-radius: 10px;
+    background: white;
+    color: #40364c;
+    font-size: 14px;
+    outline: none;
+}
+
+.coordinate-fields input:focus {
+    border-color: #ba83c8;
+    box-shadow: 0 0 0 3px rgba(186, 131, 200, 0.12);
+}
+
+.coordinate-row .remove-point-btn {
+    padding: 7px 12px;
+    height: auto;
+    font-size: 12px;
+}
+
+/* 3. CONVERSION RESULTS */
+
+.conversion-result-item {
+    padding: 18px;
+    background: white;
+    border: 1px solid #eaddeb;
+    border-radius: 12px;
+    overflow-wrap: anywhere;
+}
+
+.conversion-result-item h4 {
+    margin-bottom: 10px;
+    color: #a46ba6;
+    font-size: 16px;
+}
+
+.conversion-result-item p {
+    margin: 7px 0;
+    color: #51495c;
+    font-size: 14px;
+}
+
+.conversion-warning {
+    padding: 10px;
+    border-radius: 8px;
+    background: #fff4e5;
+    color: #946329 !important;
+    font-size: 12px !important;
+}
+
+/* 4. CALCULATION PROCESS */
+
+#calculation-content h3 {
+    margin-bottom: 15px;
+    color: #78558f;
+}
+
+#calculation-content p {
+    padding: 12px 15px;
+    margin: 10px 0;
+    background: white;
+    border-left: 4px solid #bf8ab9;
+    border-radius: 8px;
+    color: #51495c;
+    font-size: 14px;
+}
+
+/* 5. ENGINE STATUS */
+
+#engine-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: #d78b8b;
+}
+
+#engine-dot.online {
+    background: #54b88a;
+    box-shadow: 0 0 10px rgba(84, 184, 138, 0.6);
+}
+
+#engine-dot.offline {
+    background: #d75d70;
+}
+
+/* 6. RESPONSIVE VISUALIZER AND INPUTS */
+
+@media (max-width: 700px) {
+
+    .scene-container {
+        height: 320px;
+        min-height: 280px;
+    }
+
+    .coordinate-fields {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .coordinate-row {
+        padding: 13px;
+    }
+
+    .conversion-result-item {
+        padding: 13px;
+    }
+}
