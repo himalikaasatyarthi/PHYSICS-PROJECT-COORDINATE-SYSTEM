@@ -1,9 +1,4 @@
 
-/*
-  MULTIVERSE OF COORDINATES
-  Coordinate Controls
-*/
-
 export function setupControls({ convert, SYSTEMS, visualizers }) {
 
     // =====================================
@@ -13,9 +8,9 @@ export function setupControls({ convert, SYSTEMS, visualizers }) {
     const sourceSelect = document.getElementById("source-system");
     const destinationSelect = document.getElementById("destination-system");
 
-    const addPointButton = document.getElementById("add-point-btn");
+    const addPointBtn = document.getElementById("add-point-btn");
     const coordinateInputs = document.getElementById("coordinate-inputs");
-    const convertButton = document.getElementById("convert-btn");
+    const convertBtn = document.getElementById("convert-btn");
 
     const resultsContainer = document.getElementById("conversion-results");
     const resultPlaceholder = document.getElementById("result-placeholder");
@@ -30,13 +25,13 @@ export function setupControls({ convert, SYSTEMS, visualizers }) {
     const engineDot = document.getElementById("engine-dot");
     const engineStatus = document.getElementById("engine-status");
 
-    if (!sourceSelect || !destinationSelect || !coordinateInputs || !convertButton) {
-        console.error("Required converter elements are missing.");
+    if (!sourceSelect || !destinationSelect || !coordinateInputs || !convertBtn) {
+        console.error("Required coordinate converter HTML elements are missing.");
         return;
     }
 
     // =====================================
-    // 2. COORDINATE SYSTEM INFORMATION
+    // 2. SYSTEM INFORMATION
     // =====================================
 
     const systemNames = {
@@ -55,7 +50,8 @@ export function setupControls({ convert, SYSTEMS, visualizers }) {
 
         [SYSTEMS.POLAR]: [
             { label: "r", placeholder: "Enter radius" },
-            { label: "θ (degrees)", placeholder: "Enter angle" }
+            { label: "θ (degrees)", placeholder: "Enter angle" },
+            null
         ],
 
         [SYSTEMS.CYLINDRICAL]: [
@@ -71,8 +67,12 @@ export function setupControls({ convert, SYSTEMS, visualizers }) {
         ]
     };
 
+    // =====================================
+    // 3. GET SELECTED SYSTEM
+    // =====================================
+
     function getSystem(select) {
-        const value = select.value.toLowerCase();
+        const value = String(select.value).toLowerCase();
 
         const names = {
             cartesian: SYSTEMS.CARTESIAN,
@@ -81,85 +81,127 @@ export function setupControls({ convert, SYSTEMS, visualizers }) {
             spherical: SYSTEMS.SPHERICAL
         };
 
-        return names[value] ?? Number(value);
+        return Object.prototype.hasOwnProperty.call(names, value)
+            ? names[value]
+            : Number(select.value);
     }
 
     // =====================================
-    // 3. CREATE COORDINATE INPUT ROW
+    // 4. CREATE COORDINATE INPUT ROW
     // =====================================
 
-    function createInputRow(index) {
+    function createInputRow(number) {
         const row = document.createElement("div");
 
         row.className = "coordinate-row";
-        row.dataset.point = index;
+        row.dataset.point = number;
 
         row.innerHTML = `
             <div class="coordinate-row-heading">
-                <strong>Point ${index + 1}</strong>
+                <span>Point ${number}</span>
                 <button type="button" class="remove-point-btn">
                     Remove
                 </button>
             </div>
 
             <div class="coordinate-fields">
+
                 <label>
                     <span class="field-x-label">X</span>
-                    <input type="number" step="any"
-                        class="coord-x" placeholder="Enter X">
+                    <input type="number" step="any" class="coord-x"
+                        placeholder="Enter X">
                 </label>
 
                 <label>
                     <span class="field-y-label">Y</span>
-                    <input type="number" step="any"
-                        class="coord-y" placeholder="Enter Y">
+                    <input type="number" step="any" class="coord-y"
+                        placeholder="Enter Y">
                 </label>
 
                 <label>
                     <span class="field-z-label">Z</span>
-                    <input type="number" step="any"
-                        class="coord-z" placeholder="Enter Z">
+                    <input type="number" step="any" class="coord-z"
+                        placeholder="Enter Z">
                 </label>
+
             </div>
         `;
 
+        coordinateInputs.appendChild(row);
+        updateInputLabels();
+
         return row;
     }
+
+    // =====================================
+    // 5. GET ALL INPUT ROWS
+    // =====================================
 
     function getRows() {
         return [...coordinateInputs.querySelectorAll(".coordinate-row")];
     }
 
+    // =====================================
+    // 6. UPDATE INPUT LABELS
+    // =====================================
+
     function updateInputLabels() {
         const system = getSystem(sourceSelect);
         const fields = systemFields[system];
 
-        if (!fields) return;
+        if (!fields) {
+            console.error("Unknown coordinate system:", system);
+            return;
+        }
+
+        const labelClasses = [
+            "field-x-label",
+            "field-y-label",
+            "field-z-label"
+        ];
 
         getRows().forEach(row => {
+
             const inputs = [
                 row.querySelector(".coord-x"),
                 row.querySelector(".coord-y"),
                 row.querySelector(".coord-z")
             ];
 
-            const labels = [
-                row.querySelector(".field-x-label"),
-                row.querySelector(".field-y-label"),
-                row.querySelector(".field-z-label")
-            ];
-
             inputs.forEach((input, index) => {
+                if (!input) return;
+
                 const field = fields[index];
 
-                input.parentElement.style.display = field ? "" : "none";
+                let label = row.querySelector(
+                    "." + labelClasses[index]
+                );
 
-                if (field) {
-                    labels[index].textContent = field.label;
-                    input.placeholder = field.placeholder;
-                } else {
-                    input.value = "";
+                // Safely create a missing label
+                if (!label && input.parentElement) {
+                    label = document.createElement("span");
+                    label.className = labelClasses[index];
+                    input.parentElement.insertBefore(label, input);
                 }
+
+                const wrapper = input.closest("label") || input.parentElement;
+
+                if (!field) {
+                    input.value = "";
+                    input.disabled = true;
+
+                    if (wrapper) wrapper.style.display = "none";
+
+                    return;
+                }
+
+                input.disabled = false;
+
+                if (wrapper) wrapper.style.display = "";
+
+                if (label) label.textContent = field.label;
+
+                input.placeholder = field.placeholder;
             });
         });
 
@@ -168,82 +210,36 @@ export function setupControls({ convert, SYSTEMS, visualizers }) {
         }
 
         if (destinationLabel) {
+            const destination = getSystem(destinationSelect);
+
             destinationLabel.textContent =
-                systemNames[getSystem(destinationSelect)] || "Destination";
+                systemNames[destination] || "Destination";
         }
     }
 
     // =====================================
-    // 4. ADD AND REMOVE POINTS
+    // 7. READ COORDINATE VALUES
     // =====================================
 
-    if (getRows().length === 0) {
-        coordinateInputs.appendChild(createInputRow(0));
-    }
-
-    function refreshRows() {
-        getRows().forEach((row, index) => {
-            row.dataset.point = index;
-
-            const heading = row.querySelector("strong");
-            if (heading) heading.textContent = `Point ${index + 1}`;
-
-            const removeButton = row.querySelector(".remove-point-btn");
-
-            if (removeButton) {
-                removeButton.disabled = getRows().length === 1;
-            }
-        });
-
-        updateInputLabels();
-    }
-
-    if (addPointButton) {
-        addPointButton.addEventListener("click", () => {
-            coordinateInputs.appendChild(
-                createInputRow(getRows().length)
-            );
-
-            refreshRows();
-        });
-    }
-
-    coordinateInputs.addEventListener("click", event => {
-        if (event.target.closest(".remove-point-btn")) {
-            const row = event.target.closest(".coordinate-row");
-
-            if (getRows().length > 1) {
-                row.remove();
-                refreshRows();
-            }
-        }
-    });
-
-    // =====================================
-    // 5. READ INPUT COORDINATES
-    // =====================================
-
-    function readCoordinates(row, system) {
+    function readCoordinates(row) {
         const x = row.querySelector(".coord-x");
         const y = row.querySelector(".coord-y");
         const z = row.querySelector(".coord-z");
 
+        const system = getSystem(sourceSelect);
         const fields = systemFields[system];
 
         const values = [
-            Number(x.value),
-            Number(y.value),
-            fields.length === 2 ? 0 : Number(z.value)
+            x && x.value !== "" ? Number(x.value) : NaN,
+            y && y.value !== "" ? Number(y.value) : NaN,
+            z && z.value !== "" ? Number(z.value) : 0
         ];
 
-        const inputs = [x, y, z];
+        if (!fields) return null;
 
-        for (let i = 0; i < fields.length; i++) {
-            if (inputs[i].value.trim() === "" ||
-                !Number.isFinite(values[i])) {
-                throw new Error(
-                    `Please enter a valid ${fields[i].label} value for every point.`
-                );
+        for (let i = 0; i < 3; i++) {
+            if (fields[i] && !Number.isFinite(values[i])) {
+                return null;
             }
         }
 
@@ -251,199 +247,205 @@ export function setupControls({ convert, SYSTEMS, visualizers }) {
     }
 
     // =====================================
-    // 6. FORMAT RESULTS
+    // 8. DISPLAY RESULTS
     // =====================================
 
-    function formatValues(system, values) {
-        const names = {
-            [SYSTEMS.CARTESIAN]: ["x", "y", "z"],
-            [SYSTEMS.POLAR]: ["r", "θ"],
-            [SYSTEMS.CYLINDRICAL]: ["ρ", "θ", "z"],
-            [SYSTEMS.SPHERICAL]: ["r", "θ", "φ"]
-        };
-
-        return names[system]
-            .map((name, index) =>
-                `${name} = ${Number(values[index]).toFixed(4)}`
-            )
-            .join(" , ");
-    }
-
-    function showResults(results, from, to) {
+    function displayResult(values, from, to, status) {
         if (!resultList) return;
 
-        resultList.innerHTML = "";
+        const item = document.createElement("div");
+        item.className = "conversion-result-item";
 
-        results.forEach((result, index) => {
-            const item = document.createElement("div");
-            item.className = "conversion-result-item";
+        const destinationName = systemNames[to];
 
-            const heading = document.createElement("h4");
-            heading.textContent = `Point ${index + 1}`;
+        item.innerHTML = `
+            <h4>${destinationName} Coordinates</h4>
+            <p>
+                ${values.map(value =>
+                    Number(value.toFixed(4))
+                ).join(", ")}
+            </p>
+            ${status === 1
+                ? `<p class="conversion-warning">
+                    Height information is omitted in Polar coordinates.
+                   </p>`
+                : ""}
+        `;
 
-            const original = document.createElement("p");
-            original.textContent =
-                `${systemNames[from]}: ${formatValues(from, result.input)}`;
+        resultList.appendChild(item);
 
-            const converted = document.createElement("p");
-            converted.textContent =
-                `${systemNames[to]}: ${formatValues(to, result.values)}`;
+        if (resultPlaceholder) {
+            resultPlaceholder.style.display = "none";
+        }
 
-            item.append(heading, original, converted);
-
-            if (result.warning) {
-                const warning = document.createElement("p");
-                warning.className = "conversion-warning";
-                warning.textContent = result.warning;
-                item.appendChild(warning);
-            }
-
-            resultList.appendChild(item);
-        });
-
-        if (resultPlaceholder) resultPlaceholder.style.display = "none";
-        if (resultsContainer) resultsContainer.style.display = "block";
+        if (resultsContainer) {
+            resultsContainer.style.display = "";
+        }
     }
 
     // =====================================
-    // 7. CALCULATION EXPLANATION
+    // 9. CALCULATION EXPLANATION
     // =====================================
 
-    function showCalculation(from, to, input, output) {
+    function displayCalculation(from, to, input, output) {
         if (!calculationContent) return;
 
-        calculationContent.innerHTML = "";
+        const fromName = systemNames[from];
+        const toName = systemNames[to];
 
-        const heading = document.createElement("h3");
-        heading.textContent = "Conversion Process";
+        calculationContent.innerHTML = `
+            <div class="calculation-step">
+                <h4>Step 1: Original Coordinates</h4>
+                <p>${fromName}: ${input.join(", ")}</p>
+            </div>
 
-        const step1 = document.createElement("p");
-        step1.textContent =
-            `Step 1: Read the ${systemNames[from]} coordinates.`;
+            <div class="calculation-step">
+                <h4>Step 2: Coordinate Transformation</h4>
+                <p>
+                    Converting from ${fromName} to ${toName}
+                    using the mathematical conversion engine.
+                </p>
+            </div>
 
-        const step2 = document.createElement("p");
-        step2.textContent =
-            "Step 2: Convert the input into Cartesian coordinates internally.";
-
-        const step3 = document.createElement("p");
-        step3.textContent =
-            `Step 3: Convert Cartesian coordinates into ${systemNames[to]} coordinates.`;
-
-        const result = document.createElement("p");
-        result.textContent =
-            `Final result: ${formatValues(to, output)}`;
-
-        calculationContent.append(
-            heading, step1, step2, step3, result
-        );
+            <div class="calculation-step">
+                <h4>Step 3: Final Coordinates</h4>
+                <p>${toName}: ${output.map(v =>
+                    Number(v.toFixed(4))
+                ).join(", ")}</p>
+            </div>
+        `;
 
         if (calculationSection) {
-            calculationSection.style.display = "block";
+            calculationSection.style.display = "";
         }
     }
 
     // =====================================
-    // 8. UPDATE 3D VISUALIZATIONS
+    // 10. CONVERT COORDINATES
     // =====================================
 
-    function updateVisualizers(from, to, input, output) {
-        if (visualizers?.source) {
-            visualizers.source.update(from, input);
+    function calculate() {
+        const from = getSystem(sourceSelect);
+        const to = getSystem(destinationSelect);
+
+        if (!systemFields[from] || !systemNames[to]) {
+            alert("Please select valid coordinate systems.");
+            return;
         }
 
-        if (visualizers?.destination) {
-            visualizers.destination.update(to, output);
+        const rows = getRows();
+
+        if (rows.length === 0) {
+            alert("Please add at least one coordinate point.");
+            return;
         }
-    }
 
-    // =====================================
-    // 9. CONVERT BUTTON
-    // =====================================
+        if (resultList) resultList.innerHTML = "";
 
-    convertButton.addEventListener("click", () => {
-        try {
-            const from = getSystem(sourceSelect);
-            const to = getSystem(destinationSelect);
+        let successCount = 0;
 
-            if (!systemNames[from] || !systemNames[to]) {
-                throw new Error("Please select valid coordinate systems.");
+        rows.forEach((row, index) => {
+            const input = readCoordinates(row);
+
+            if (!input) {
+                alert(`Please enter valid coordinates for Point ${index + 1}.`);
+                return;
             }
 
-            const rows = getRows();
-
-            if (rows.length === 0) {
-                throw new Error("Please add at least one coordinate point.");
-            }
-
-            const results = [];
-
-            rows.forEach(row => {
-                const input = readCoordinates(row, from);
+            try {
                 const result = convert(from, to, input);
 
-                results.push({
-                    input,
-                    values: result.values,
-                    warning: result.warning
-                });
-            });
+                if (!result || !result.success) {
+                    throw new Error("Coordinate conversion failed.");
+                }
 
-            showResults(results, from, to);
+                displayResult(result.values, from, to, result.status);
 
-            const first = results[0];
+                displayCalculation(from, to, input, result.values);
 
-            updateVisualizers(
-                from,
-                to,
-                first.input,
-                first.values
-            );
+                if (index === 0) {
+                    if (visualizers?.source) {
+                        visualizers.source.update(from, input);
+                    }
 
-            showCalculation(
-                from,
-                to,
-                first.input,
-                first.values
-            );
+                    if (visualizers?.destination) {
+                        visualizers.destination.update(to, result.values);
+                    }
+                }
 
-            console.log("Conversion successful:", results);
+                successCount++;
 
-        } catch (error) {
-            alert(error.message);
-            console.error("Conversion error:", error);
+            } catch (error) {
+                console.error("Conversion error:", error);
+                alert(error.message || "Unable to convert coordinates.");
+            }
+        });
+
+        if (successCount === 0 && resultPlaceholder) {
+            resultPlaceholder.style.display = "";
         }
-    });
-
-    // =====================================
-    // 10. SYSTEM SELECTORS
-    // =====================================
-
-    sourceSelect.addEventListener("change", updateInputLabels);
-
-    destinationSelect.addEventListener("change", () => {
-        const system = getSystem(destinationSelect);
-
-        if (destinationLabel) {
-            destinationLabel.textContent = systemNames[system] || "Destination";
-        }
-    });
-
-    // =====================================
-    // 11. ENGINE STATUS
-    // =====================================
-
-    if (engineDot) {
-        engineDot.classList.add("online");
     }
+
+    // =====================================
+    // 11. ADD AND REMOVE POINTS
+    // =====================================
+
+    if (addPointBtn) {
+        addPointBtn.addEventListener("click", () => {
+            createInputRow(getRows().length + 1);
+        });
+    }
+
+    coordinateInputs.addEventListener("click", event => {
+        if (!event.target.classList.contains("remove-point-btn")) return;
+
+        const rows = getRows();
+
+        if (rows.length <= 1) {
+            alert("At least one coordinate point is required.");
+            return;
+        }
+
+        event.target.closest(".coordinate-row")?.remove();
+
+        getRows().forEach((row, index) => {
+            const heading = row.querySelector(".coordinate-row-heading span");
+
+            if (heading) heading.textContent = `Point ${index + 1}`;
+
+            row.dataset.point = index + 1;
+        });
+    });
+
+    // =====================================
+    // 12. EVENT LISTENERS
+    // =====================================
+
+    sourceSelect.addEventListener("change", () => {
+        updateInputLabels();
+
+        if (resultList) resultList.innerHTML = "";
+    });
+
+    destinationSelect.addEventListener("change", updateInputLabels);
+
+    convertBtn.addEventListener("click", calculate);
+
+    // =====================================
+    // 13. INITIALIZE
+    // =====================================
+
+    if (getRows().length === 0) {
+        createInputRow(1);
+    }
+
+    updateInputLabels();
+
+    if (engineDot) engineDot.classList.add("online");
 
     if (engineStatus) {
         engineStatus.textContent = "C ENGINE: ONLINE";
     }
 
-    refreshRows();
-
-    console.log("Coordinate controls initialized successfully.");
-
-    return true;
+    console.log("Coordinate controls initialized successfully!");
 }
-
