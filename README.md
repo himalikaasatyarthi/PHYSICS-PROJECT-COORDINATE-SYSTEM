@@ -1,51 +1,107 @@
-# PHYSICS-PROJECT-COORDINATE-SYSTEM 
-Polar, Cylindrical and Spherical Coordinate Visualizer- A simple 3D model or program to convert selected points between Cartesian and cylindrical/spherical coordinates.
+# 🌌 Multiverse of Coordinates
 
-Coordinate Universe
-An accessible, futuristic coordinate-system converter and Engineering Physics learning aid.
+### An Interactive 3D Coordinate Conversion and Visualization Project
 
-Files in this project
-File	Language	Purpose
-README.md	Markdown	Setup, file guide and usage notes
-index.html	HTML5	Page structure and accessible interface
-style.css	CSS3	Layout, futuristic theme, responsive styling and accessibility modes
-main.js	JavaScript	App state, validation, coordinate maths, conversion results and examples
-controls.js	JavaScript	Theme, accessibility, speech, clipboard and view buttons
-visualizer.js	JavaScript	Interactive 3D canvas models, camera movement and zoom
-coordinates.c	C11	Native C implementation of the coordinate conversion maths
-Run the browser application
-Keep all project files in the same folder.
-Open index.html in Chrome, Edge, Firefox or another modern browser.
-Choose a source system and a target system, enter values, and select Convert coordinates.
-The app uses classic JavaScript files (not JavaScript modules), so it can be opened directly from your file manager. No package installation, sign-in or internet connection is required.
+**Multiverse of Coordinates** is an interactive web-based physics project designed to explore and understand four major coordinate systems: Cartesian, Polar, Cylindrical, and Spherical.
 
-Coordinate conventions
-Cartesian: (x, y, z).
-Polar: (r, θ) on a selected plane. The plane can be XY, XZ or YZ. When converted to 3D, the coordinate absent from the selected plane is zero.
-Cylindrical: (r, θ, z), with θ measured from +X toward +Y.
-Spherical: (ρ, θ, φ), where θ is azimuth around +Z and φ is measured down from +Z.
-All angles are entered and displayed in degrees.
-Inputs accept values from −1,000,000,000,000 through +1,000,000,000,000 and up to 10 decimal places. Display precision is separately adjustable from 0 to 10 places.
-What each JavaScript file does
-main.js owns the application state, validates input, converts all four systems through a shared Cartesian point, renders the output, and loads physics examples.
-controls.js owns the usability features: light/dark mode, high contrast, larger text, easy-read spacing, reduced motion, copy result, speech readout and camera buttons.
-visualizer.js owns both 3D canvas views, including coordinate geometry, pointer dragging, wheel zoom and keyboard camera controls.
-About coordinates.c
-Browsers do not execute C source files directly. For that reason, the web app uses the equivalent JavaScript conversion routines in main.js and remains directly runnable without a build step. coordinates.c is a separate, real C11 implementation of the same conversion operations, intended for native C use or for a future WebAssembly build.
+The project allows users to convert coordinates between different systems and visualize the mathematical transformations through interactive 3D models.
 
-Compile the C source into an object file with GCC or Clang:
+---
 
-cc -std=c11 -Wall -Wextra -pedantic -c coordinates.c -o coordinates.o
-The C source defines its coordinate enums and structs near the top, then exposes these functions:
+## 🎯 Project Objective
 
-cu_to_cartesian(...)
-cu_from_cartesian(...)
-cu_convert(...)
-Link a native C program that uses the library with the math library where required:
+The main objective of this project is to make coordinate geometry easier to understand through interactive visualization and real-time mathematical calculations.
 
-cc your_program.c coordinates.c -lm -o your_program
-Accessibility features
-The interface includes visible labels, keyboard focus indicators, input error announcements, screen-reader descriptions for the visualisations, high-contrast and light themes, larger text, easy-read spacing, reduced-motion mode, and optional speech output (browser support varies).
+It connects theoretical concepts of physics and mathematics with practical web technologies.
 
-Numerical note
-The converter uses JavaScript Number and C double floating-point arithmetic. Ten decimal places can be entered, but decimal precision is not unlimited; at very large magnitudes, tiny fractional differences may be rounded by floating-point representation. The app reports formatted output to the selected number of decimal places.
+## ✨ Key Features
+
+- **Four Coordinate Systems:** Supports Cartesian, Polar, Cylindrical, and Spherical coordinates.
+- **Coordinate Converter:** Converts values from one coordinate system to another.
+- **Interactive 3D Visualization:** Displays coordinate points and their positions in 3D space.
+- **Dynamic Transformations:** Updates visualizations according to the input coordinates.
+- **Mathematical Calculations:** Demonstrates the mathematical relationships between coordinate systems.
+- **WebAssembly Integration:** Uses a C-based mathematical engine compiled into WebAssembly.
+- **Interactive Interface:** Provides an easy-to-use interface for exploring coordinate transformations.
+
+## 🧮 Coordinate Systems
+
+| Coordinate System | Coordinates | Description |
+|---|---|---|
+| Cartesian | (x, y, z) | Represents a point using three perpendicular axes. |
+| Polar | (r, θ) | Represents a point using radius and angle in a plane. |
+| Cylindrical | (r, θ, z) | Extends polar coordinates into three dimensions. |
+| Spherical | (ρ, θ, φ) | Represents a point using radial distance and two angles. |
+
+## 🛠️ Technologies Used
+
+- **HTML5** – Website structure
+- **CSS3** – Styling and responsive design
+- **JavaScript (ES6)** – Application logic and interactivity
+- **Three.js** – 3D graphics and visualization
+- **C Programming** – Mathematical conversion engine
+- **WebAssembly (WASM)** – Executes the C engine in the browser
+- **GitHub Pages** – Website hosting
+- **GitHub Actions** – Automated build and deployment
+
+## ⚙️ How It Works
+
+1. The user selects a source coordinate system.
+2. The user selects a destination coordinate system.
+3. The user enters the coordinate values.
+4. JavaScript passes the values to the WebAssembly-based C engine.
+5. The C engine performs the mathematical conversion.
+6. The converted coordinates are displayed on the website.
+7. Three.js updates the 3D visualization to represent the resulting point.
+
+## 📁 Project Structure
+
+```text
+PHYSICS-PROJECT/
+│
+├── .github/
+│   └── workflows/
+│       ├── deploy.yml
+│       └── test-c.yml
+│
+├── assets/
+│
+├── c-engine/
+│   └── coordinates.c
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   ├── engine.js
+│   ├── main.js
+│   ├── visualizer.js
+│   └── controls.js
+│
+├── index.html
+└── README.md
+```
+
+## 🚀 Live Website
+
+Explore the project here:
+
+**[🌐 Multiverse of Coordinates – Live Website](https://himalikaasatyarthi.github.io/PHYSICS-PROJECT-COORDINATE-SYSTEM/)**
+
+## 💡 Applications
+
+- Understanding coordinate geometry.
+- Studying three-dimensional space.
+- Learning transformations between coordinate systems.
+- Visualizing mathematical concepts in physics.
+- Exploring the relationship between mathematics and computer science.
+
+## 🎓 Conclusion
+
+Multiverse of Coordinates combines physics, mathematics, and programming to create an interactive learning experience. By integrating a C-based WebAssembly engine with JavaScript and Three.js, the project demonstrates how mathematical coordinate transformations can be calculated and visualized in real time.
+
+**Explore coordinates. Visualize dimensions. Discover the multiverse!** 🌌
+
+---
+
+*Developed as an educational Physics Project.*
