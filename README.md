@@ -103,5 +103,6 @@ Multiverse of Coordinates combines physics, mathematics, and programming to crea
 **Explore coordinates. Visualize dimensions. Discover the multiverse!** 🌌
 
 ---
-
+CONTRIBUTORS: AAYUSH KUNDU
+              HIMALIKA SATYARTHI
 *Developed as an educational Physics Project.*
