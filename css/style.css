@@ -1221,3 +1221,67 @@ section {
         padding: 13px;
     }
 }
+
+
+
+/* =========================================
+   GLOBAL BACKGROUND IMAGE
+   MULTIVERSE OF COORDINATES
+========================================= */
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 248, 250, 0.72),
+            rgba(255, 248, 250, 0.78)
+        ),
+        url("../assets/background.png");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Make the main page sections transparent
+   so the same background remains visible */
+
+main > section,
+footer {
+    background-color: transparent !important;
+}
+
+/* Keep navigation readable */
+
+header,
+nav {
+    background-color: rgba(255, 248, 250, 0.78);
+    backdrop-filter: blur(12px);
+}
+
+/* Keep content cards readable */
+
+.card,
+.system-card,
+.converter-card,
+.visualizer-card,
+.calculation-step,
+.conversion-result-item {
+    background-color: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(8px);
+}
+
+/* Keep the background consistent on mobile */
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        background-position: center;
+    }
+}
