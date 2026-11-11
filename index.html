@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +11,8 @@
     <meta name="description"
         content="Explore Cartesian, Polar, Cylindrical and Spherical coordinate systems through interactive conversion and 3D visualization.">
 
+    <meta name="theme-color" content="#080d1c">
+
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,12 +24,18 @@
 
 <body>
 
-    <!-- NAVIGATION BAR -->
+    <!-- =====================================
+         NAVIGATION BAR
+    ====================================== -->
+
     <header class="navbar">
 
         <div class="logo">
             <span class="logo-icon">∞</span>
-            <span>Multiverse <span class="logo-highlight">of Coordinates</span></span>
+            <span>
+                Multiverse
+                <span class="logo-highlight">of Coordinates</span>
+            </span>
         </div>
 
         <nav class="nav-links">
@@ -38,15 +46,23 @@
             <a href="#about">About</a>
         </nav>
 
-        <a href="#converter" class="nav-button">Explore Now ↗</a>
+        <a href="#converter" class="nav-button">
+            Explore Now ↗
+        </a>
 
     </header>
 
 
-    <!-- MAIN CONTENT -->
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
     <main>
 
-        <!-- HERO SECTION -->
+        <!-- =================================
+             HERO SECTION
+        ================================== -->
+
         <section class="hero" id="home">
 
             <div class="hero-content">
@@ -106,21 +122,29 @@
             </div>
 
             <div class="hero-decoration">
+
                 <div class="orbit orbit-one"></div>
                 <div class="orbit orbit-two"></div>
                 <div class="orbit orbit-three"></div>
+
                 <div class="center-point">P</div>
+
             </div>
 
         </section>
 
 
-        <!-- COORDINATE SYSTEMS SECTION -->
+        <!-- =================================
+             COORDINATE SYSTEMS
+        ================================== -->
+
         <section class="systems-section" id="systems">
 
             <div class="section-heading">
 
-                <span class="section-label">THE FOUR DIMENSIONS</span>
+                <span class="section-label">
+                    THE FOUR DIMENSIONS
+                </span>
 
                 <h2>Explore Coordinate Systems</h2>
 
@@ -134,9 +158,11 @@
             <div class="systems-grid">
 
                 <!-- CARTESIAN -->
+
                 <article class="system-card cartesian-card">
 
                     <span class="system-number">01</span>
+
                     <div class="system-symbol">X Y Z</div>
 
                     <h3>Cartesian</h3>
@@ -156,9 +182,11 @@
 
 
                 <!-- POLAR -->
+
                 <article class="system-card polar-card">
 
                     <span class="system-number">02</span>
+
                     <div class="system-symbol">r θ</div>
 
                     <h3>Polar</h3>
@@ -178,9 +206,11 @@
 
 
                 <!-- CYLINDRICAL -->
+
                 <article class="system-card cylindrical-card">
 
                     <span class="system-number">03</span>
+
                     <div class="system-symbol">r θ z</div>
 
                     <h3>Cylindrical</h3>
@@ -191,7 +221,7 @@
                     </p>
 
                     <div class="formula">
-                        P = (r, θ, z)
+                        P = (ρ, θ, z)
                     </div>
 
                     <a href="#converter">Explore System →</a>
@@ -200,9 +230,11 @@
 
 
                 <!-- SPHERICAL -->
+
                 <article class="system-card spherical-card">
 
                     <span class="system-number">04</span>
+
                     <div class="system-symbol">r θ φ</div>
 
                     <h3>Spherical</h3>
@@ -225,12 +257,17 @@
         </section>
 
 
-        <!-- CONVERTER SECTION -->
+        <!-- =================================
+             COORDINATE CONVERTER
+        ================================== -->
+
         <section class="converter-section" id="converter">
 
             <div class="section-heading">
 
-                <span class="section-label">MATHEMATICAL ENGINE</span>
+                <span class="section-label">
+                    MATHEMATICAL ENGINE
+                </span>
 
                 <h2>Coordinate Converter</h2>
 
@@ -243,6 +280,7 @@
 
 
             <!-- CONVERTER INTRODUCTION -->
+
             <div class="converter-intro">
 
                 <h3>Your Mathematical Journey Starts Here</h3>
@@ -254,42 +292,71 @@
                 </p>
 
                 <span class="coming-label">
-                    CONVERTER MODULE
+                    C / WEBASSEMBLY MATHEMATICAL ENGINE
                 </span>
 
             </div>
 
 
             <!-- SYSTEM SELECTORS -->
+
             <div class="converter-selectors">
 
                 <div class="form-group">
 
-                    <label for="source-system">From System</label>
+                    <label for="source-system">
+                        From System
+                    </label>
 
                     <select id="source-system">
 
-                        <option value="0">Cartesian (x, y, z)</option>
-                        <option value="1">Polar (r, θ)</option>
-                        <option value="2">Cylindrical (r, θ, z)</option>
-                        <option value="3">Spherical (ρ, θ, φ)</option>
+                        <option value="0">
+                            Cartesian (x, y, z)
+                        </option>
+
+                        <option value="1">
+                            Polar (r, θ)
+                        </option>
+
+                        <option value="2">
+                            Cylindrical (ρ, θ, z)
+                        </option>
+
+                        <option value="3">
+                            Spherical (r, θ, φ)
+                        </option>
 
                     </select>
 
                 </div>
 
-                <div class="conversion-arrow">→</div>
+                <div class="conversion-arrow">
+                    →
+                </div>
 
                 <div class="form-group">
 
-                    <label for="destination-system">To System</label>
+                    <label for="destination-system">
+                        To System
+                    </label>
 
                     <select id="destination-system">
 
-                        <option value="1">Polar (r, θ)</option>
-                        <option value="0">Cartesian (x, y, z)</option>
-                        <option value="2">Cylindrical (r, θ, z)</option>
-                        <option value="3">Spherical (ρ, θ, φ)</option>
+                        <option value="1">
+                            Polar (r, θ)
+                        </option>
+
+                        <option value="0">
+                            Cartesian (x, y, z)
+                        </option>
+
+                        <option value="2">
+                            Cylindrical (ρ, θ, z)
+                        </option>
+
+                        <option value="3">
+                            Spherical (r, θ, φ)
+                        </option>
 
                     </select>
 
@@ -299,6 +366,7 @@
 
 
             <!-- INPUT COORDINATES -->
+
             <div class="points-heading">
 
                 <h3>Input Coordinates</h3>
@@ -314,29 +382,43 @@
 
                 <div class="coordinate-row" data-point="1">
 
-                    <span class="point-number">P1</span>
+                    <span class="point-number">
+                        P1
+                    </span>
 
-                    <input type="number"
+                    <input
+                        type="number"
                         step="any"
                         class="coordinate-input coord-x"
                         placeholder="X / r / ρ"
-                        value="3">
+                        aria-label="First coordinate"
+                        value="3"
+                    >
 
-                    <input type="number"
+                    <input
+                        type="number"
                         step="any"
                         class="coordinate-input coord-y"
                         placeholder="Y / θ"
-                        value="4">
+                        aria-label="Second coordinate"
+                        value="4"
+                    >
 
-                    <input type="number"
+                    <input
+                        type="number"
                         step="any"
                         class="coordinate-input coord-z"
                         placeholder="Z / φ"
-                        value="5">
+                        aria-label="Third coordinate"
+                        value="5"
+                    >
 
-                    <button type="button"
+                    <button
+                        type="button"
                         class="remove-point-btn"
-                        disabled>
+                        disabled
+                        aria-label="Remove point"
+                    >
                         ×
                     </button>
 
@@ -346,21 +428,54 @@
 
 
             <!-- ANGLE INFORMATION -->
+
             <div class="angle-note">
 
-                Angles are entered in degrees.
-                Polar coordinates use two components; the third is ignored.
+                <p>
+                    <strong>Angle convention:</strong>
+                    All angles are entered in degrees.
+                </p>
+
+                <p>
+                    Polar coordinates use two components.
+                    Their third input is not used.
+                </p>
+
+                <p>
+                    Spherical coordinates use θ as the azimuth
+                    angle and φ as the polar angle measured
+                    from the positive Z-axis.
+                </p>
 
             </div>
 
 
             <!-- CONVERT BUTTON -->
-            <button type="button" id="convert-btn" class="primary-button">
+
+            <button
+                type="button"
+                id="convert-btn"
+                class="primary-button"
+            >
                 Convert Coordinates →
             </button>
 
 
+            <!-- ENGINE STATUS -->
+
+            <div class="engine-status">
+
+                <span id="engine-dot" class="status-dot"></span>
+
+                <span id="engine-status">
+                    Initializing mathematical engine...
+                </span>
+
+            </div>
+
+
             <!-- CONVERSION RESULTS -->
+
             <div id="conversion-results" class="results-panel">
 
                 <h3>Conversion Results</h3>
@@ -375,6 +490,7 @@
 
 
             <!-- CALCULATION STEPS -->
+
             <div id="calculation-section" class="calculation-panel">
 
                 <h3>Step-by-Step Calculations</h3>
@@ -388,12 +504,17 @@
         </section>
 
 
-        <!-- 3D VISUALIZER SECTION -->
+        <!-- =================================
+             3D VISUALIZER
+        ================================== -->
+
         <section class="visualizer-section" id="visualizer">
 
             <div class="section-heading">
 
-                <span class="section-label">BEYOND THE EQUATIONS</span>
+                <span class="section-label">
+                    BEYOND THE EQUATIONS
+                </span>
 
                 <h2>Visualize in Three Dimensions</h2>
 
@@ -404,52 +525,145 @@
 
             </div>
 
+
+            <!-- VISUALIZER CONTROLS -->
+
+            <div class="visualizer-controls">
+
+                <p>
+                    Change your coordinates in the converter
+                    to explore the same point in different
+                    coordinate systems.
+                </p>
+
+            </div>
+
+
+            <!-- TWO 3D VISUALIZATION PANELS -->
+
             <div class="visualizer-grid">
 
+
+                <!-- SOURCE VISUALIZER -->
+
                 <div class="visualizer-card">
 
-                    <div class="visualizer-preview">
-                        <span>01</span>
-                        <div class="preview-symbol">XYZ</div>
+                    <div class="visualizer-card-heading">
+
+                        <span class="section-label">
+                            ORIGINAL POINT
+                        </span>
+
+                        <h3>Source Coordinate Space</h3>
+
                     </div>
 
-                    <h3>Source Coordinate Space</h3>
+                    <div
+                        id="source-scene"
+                        class="scene-container"
+                        aria-label="3D source coordinate visualization"
+                    >
 
-                    <p>
-                        Explore the original point and its
-                        coordinate representation.
-                    </p>
+                        <p>
+                            Initializing 3D visualization...
+                        </p>
+
+                    </div>
+
+                    <div class="scene-information">
+
+                        <p id="source-coordinate-label">
+                            Original coordinate representation
+                        </p>
+
+                        <p id="source-system-label">
+                            Cartesian Coordinate System
+                        </p>
+
+                    </div>
 
                 </div>
 
 
+                <!-- DESTINATION VISUALIZER -->
+
                 <div class="visualizer-card">
 
-                    <div class="visualizer-preview">
-                        <span>02</span>
-                        <div class="preview-symbol">3D</div>
+                    <div class="visualizer-card-heading">
+
+                        <span class="section-label">
+                            CONVERTED POINT
+                        </span>
+
+                        <h3>Destination Coordinate Space</h3>
+
                     </div>
 
-                    <h3>Destination Coordinate Space</h3>
+                    <div
+                        id="destination-scene"
+                        class="scene-container"
+                        aria-label="3D destination coordinate visualization"
+                    >
 
-                    <p>
-                        Observe the same point in its converted
-                        coordinate representation.
-                    </p>
+                        <p>
+                            Initializing 3D visualization...
+                        </p>
+
+                    </div>
+
+                    <div class="scene-information">
+
+                        <p id="destination-coordinate-label">
+                            Converted coordinate representation
+                        </p>
+
+                        <p id="destination-system-label">
+                            Polar Coordinate System
+                        </p>
+
+                    </div>
 
                 </div>
+
+            </div>
+
+
+            <!-- VISUALIZER INFORMATION -->
+
+            <div class="visualizer-info">
+
+                <h3>Explore the Geometry of Space</h3>
+
+                <p>
+                    Observe how the same physical point can be
+                    represented using different mathematical
+                    coordinate systems.
+                </p>
+
+                <p>
+                    The 3D models will display coordinate axes,
+                    reference geometry, radius, angles and
+                    the position of the selected point.
+                </p>
 
             </div>
 
         </section>
 
 
-        <!-- ABOUT SECTION -->
+        <!-- =================================
+             ABOUT SECTION
+        ================================== -->
+
         <section class="about-section" id="about">
 
-            <span class="section-label">ABOUT THE PROJECT</span>
+            <span class="section-label">
+                ABOUT THE PROJECT
+            </span>
 
-            <h2>Understanding Space Through Mathematics</h2>
+            <h2>
+                Understanding Space Through Mathematics
+            </h2>
 
             <p>
                 Multiverse of Coordinates is an educational
@@ -480,7 +694,10 @@
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
     <footer class="footer" id="footer">
 
         <div class="footer-logo">
@@ -488,22 +705,31 @@
         </div>
 
         <p>
-            Exploring the geometry of space, one point at a time.
+            Exploring the geometry of space,
+            one point at a time.
         </p>
 
         <p class="copyright">
-            © 2026 Multiverse of Coordinates | Physics Project
+            © 2026 Multiverse of Coordinates |
+            Physics Project
         </p>
 
     </footer>
 
 
-    <!-- WEBASSEMBLY C ENGINE -->
+    <!-- =====================================
+         WEBASSEMBLY C ENGINE
+    ====================================== -->
+
     <script src="wasm/coordinates.js"></script>
 
-    <!-- MAIN JAVASCRIPT APPLICATION -->
+
+    <!-- =====================================
+         MAIN JAVASCRIPT APPLICATION
+    ====================================== -->
+
     <script type="module" src="js/main.js"></script>
 
 </body>
+
 </html>
-```
